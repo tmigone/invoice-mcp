@@ -11,11 +11,13 @@ export const BusinessSchema = z.object({
   name: z.string(),
   email: z.string().email().optional(),
   phone: z.string().optional(),
-  website: z.string().url().optional(),
   address: z.string().optional(),
   city: z.string().optional(),
   country: z.string().optional(),
   postCode: z.string().optional(),
+  accountName: z.string().optional(),
+  accountNumber: z.string().optional(),
+  sortCode: z.string().optional(),
 });
 
 export const CustomerSchema = z.object({
