@@ -18,6 +18,7 @@ export const BusinessSchema = z.object({
   accountName: z.string().optional(),
   accountNumber: z.string().optional(),
   sortCode: z.string().optional(),
+  logo: z.string().url().optional(),
 });
 
 export const CustomerSchema = z.object({

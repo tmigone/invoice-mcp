@@ -1,6 +1,6 @@
 import type { Invoice } from "./types";
 
-export const invoiceData: Invoice = {
+export const invoice: Invoice = {
   invoiceNumber: "INV-2024-001",
   date: new Date("2024-01-15"),
   dueDate: new Date("2024-02-14"),
@@ -15,6 +15,7 @@ export const invoiceData: Invoice = {
     accountName: "Highland Creative Studio Ltd",
     accountNumber: "12345678",
     sortCode: "80-22-60",
+    logo: "https://cdn.freebiesupply.com/images/large/2x/burger-king-logo-png-transparent.png",
   },
   customer: {
     name: "Glasgow Tech Solutions",
@@ -40,8 +41,7 @@ export const invoiceData: Invoice = {
   ],
   subtotal: 3300.0,
   vatRate: 0.2,
-  vatAmount: 660.0,
-  total: 3960.0,
+  total: 0,
   notes: "Thank you for your business!",
   terms: "Payment terms: Net 30 days.",
 };
