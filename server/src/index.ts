@@ -10,9 +10,8 @@ import {
   ListPromptsRequestSchema,
   GetPromptRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import { invoiceSchema } from "./lib/invoiceSchema.js";
-import { Invoice, InvoiceSchema } from "./lib/types.js";
-import { generateInvoicePDF } from "./components/invoice-template.js";
+import { generateInvoicePdfSchema } from "./lib/invoiceSchema.js";
+import { Invoice } from "./lib/types.js";
 
 // Create server instance
 const server = new Server(
@@ -35,7 +34,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: "generate-invoice-pdf",
         description: "Creates and exports an invoice as a PDF",
-        inputSchema: invoiceSchema,
+        inputSchema: generateInvoicePdfSchema,
       },
     ],
   };
@@ -48,25 +47,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       outputPath: string;
     };
 
-    try {
-      await generateInvoicePDF(invoice, outputPath);
-      return {
-        success: true,
-        message: "Invoice generated successfully",
-      };
-    } catch (error) {
-      console.error("Error generating invoice:", error);
-      return {
-        success: false,
-        message: "Error generating invoice",
-      };
-    }
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Invoice PDF successfully created and saved to: ${outputPath}`,
+        },
+      ],
+    };
   }
-  return {
-    success: false,
-    message: "Invalid tool name",
-  };
+  throw new Error("Tool not found");
 });
+
 // Start the server using stdio transport and catch any errors
 async function main() {
   const transport = new StdioServerTransport();
