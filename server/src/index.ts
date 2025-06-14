@@ -26,6 +26,17 @@ const server = new Server(
   }
 );
 
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: "generate-invoice-pdf",
+        description: "Creates and exports an invoice as a PDF",
+        inputSchema: generateInvoicePDFSchema
+      }
+    ]
+  }
+})
 
 // Start the server using stdio transport and catch any errors
 async function main() {
