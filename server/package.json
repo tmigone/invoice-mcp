@@ -1,31 +1,26 @@
 {
-  "name": "invoice-mcp-server",
-  "version": "1.0.0",
-  "description": "MCP server for creating and exporting invoice PDFs",
-  "main": "dist/index.js",
+  "name": "Invoice MCP Server",
+  "version": "0.1.0",
+  "description": "MCP server for invoice processing",
+  "private": true,
   "type": "module",
+  "bin": {
+    "invoice": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
+    "build": "tsc && chmod 755 build/index.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.5.0",
-    "@react-pdf/renderer": "^4.3.0",
-    "zod": "^3.25.57"
+    "@modelcontextprotocol/sdk": "0.6.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/react": "^19.1.7",
-    "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
-  },
-  "keywords": [
-    "mcp",
-    "invoice",
-    "pdf",
-    "server"
-  ],
-  "author": "",
-  "license": "MIT"
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3"
+  }
 }

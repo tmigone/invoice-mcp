@@ -40,7 +40,7 @@ const notes: { [id: string]: Note } = {
  */
 const server = new Server(
   {
-    name: "invoice-mcp",
+    name: "Invoice MCP Server",
     version: "0.1.0",
   },
   {
