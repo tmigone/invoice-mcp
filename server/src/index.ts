@@ -10,8 +10,11 @@ import {
   ListPromptsRequestSchema,
   GetPromptRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import { generateInvoicePdfSchema } from "./lib/invoiceSchema.js";
+import { generateInvoicePdfSchema } from "./lib/generateInvoicePdfSchema.js";
 import { Invoice } from "./lib/types.js";
+import { homedir } from "os";
+import { join } from "path";
+import { generateInvoicePDF } from "./components/invoice-template.js";
 
 // Create server instance
 const server = new Server(
@@ -26,6 +29,7 @@ const server = new Server(
   }
 );
 
+// List tools
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
@@ -38,6 +42,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
   };
 });
 
+// Call tools
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (request.params.name === "generate-invoice-pdf") {
     const { invoice: invoiceData, outputPath } = request.params.arguments as {
@@ -45,11 +50,27 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       outputPath: string;
     };
 
+    const invoice = {
+      ...invoiceData,
+      date: new Date(invoiceData.date),
+      dueDate: new Date(invoiceData.dueDate),
+    };
+
+    const defaultPath = join(
+      homedir(),
+      "Desktop",
+      `invoice-${invoiceData.invoiceNumber}.pdf`
+    );
+
+    const finalOutputPath = outputPath || defaultPath;
+
+    await generateInvoicePDF(invoice, finalOutputPath);
+
     return {
       content: [
         {
           type: "text",
-          text: `Invoice PDF successfully created and saved to: ${outputPath}`,
+          text: `Invoice PDF successfully created and saved to: ${finalOutputPath}`,
         },
       ],
     };
