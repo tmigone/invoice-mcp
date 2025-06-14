@@ -39,7 +39,7 @@ export const InvoiceSchema = z.object({
   items: z.array(InvoiceItemSchema),
   subtotal: z.number().nonnegative().default(0),
   vatRate: z.number().nonnegative().default(0).optional(),
-  vatAmount: z.number().nonnegative().default(0).optional(),
+  vatAmount: z.number().nonnegative().optional().default(0),
   total: z.number().nonnegative().default(0),
   notes: z.string().optional(),
   terms: z.string().optional(),
