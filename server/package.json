@@ -17,7 +17,9 @@
     "inspector": "npx @modelcontextprotocol/inspector build/index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "0.6.0"
+    "@modelcontextprotocol/sdk": "0.6.0",
+    "@react-pdf/renderer": "^4.3.0",
+    "zod": "^3.25.64"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
