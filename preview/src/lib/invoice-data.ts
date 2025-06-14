@@ -15,7 +15,7 @@ export const invoice: Invoice = {
     accountName: "Highland Creative Studio Ltd",
     accountNumber: "12345678",
     sortCode: "80-22-60",
-    logo: "https://cdn.freebiesupply.com/images/large/2x/burger-king-logo-png-transparent.png",
+    logo: "https://i.ibb.co/7tkcWycq/waving-transparent.png",
   },
   customer: {
     name: "Glasgow Tech Solutions",
