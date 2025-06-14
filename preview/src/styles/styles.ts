@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     color: COLORS.secondary,
   },
   logoImage: {
-    height: 30,
+    height: 43,
     objectFit: "contain",
   },
 

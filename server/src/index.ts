@@ -6,7 +6,7 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { generateInvoicePdfSchema } from "./lib/generateInvoicePdfSchema.js";
-import { Invoice, InvoiceItem } from "./lib/types.js";
+import { Invoice, InvoiceItem, InvoiceSchema } from "./lib/types.js";
 import { homedir } from "os";
 import { join } from "path";
 import { generateInvoicePDF } from "./components/invoice-template.js";
@@ -45,6 +45,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       outputPath: string;
     };
 
+    // Calculate totals
     const itemsWithTotals = invoiceData.items.map((item: InvoiceItem) => ({
       ...item,
       total: item.quantity * item.unitPrice,
@@ -67,6 +68,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       total,
     };
 
+    const validationResult = InvoiceSchema.safeParse(invoice);
+
+    if (!validationResult.success) {
+      return {
+        content: [{ type: "text", text: "Invalid invoice data" }],
+      };
+    }
+
+    const validatedInvoice = validationResult.data;
+
     const defaultPath = join(
       homedir(),
       "Desktop",
@@ -75,7 +86,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const finalOutputPath = outputPath || defaultPath;
 
-    await generateInvoicePDF(invoice, finalOutputPath);
+    await generateInvoicePDF(validatedInvoice, finalOutputPath);
 
     return {
       content: [
