@@ -21,9 +21,7 @@ const server = new Server(
   },
   {
     capabilities: {
-      resources: {},
       tools: {},
-      prompts: {},
     },
   }
 );
@@ -42,7 +40,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (request.params.name === "generate-invoice-pdf") {
-    const { invoice, outputPath } = request.params.arguments as {
+    const { invoice: invoiceData, outputPath } = request.params.arguments as {
       invoice: Invoice;
       outputPath: string;
     };
