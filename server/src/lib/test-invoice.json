@@ -27,20 +27,15 @@
     {
       "description": "Website Design & Development",
       "quantity": 1,
-      "unitPrice": 2500.0,
-      "total": 2500.0
+      "unitPrice": 2500.0
     },
     {
       "description": "Logo Design & Branding Package",
-      "quantity": 1,
-      "unitPrice": 800.0,
-      "total": 800.0
+      "quantity": 3,
+      "unitPrice": 800.23
     }
   ],
-  "subtotal": 3300.0,
   "vatRate": 0.2,
-  "vatAmount": 0,
-  "total": 0,
   "notes": "Thank you for your business!",
   "terms": "Payment terms: Net 30 days."
 }

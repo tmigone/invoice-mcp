@@ -6,7 +6,7 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { generateInvoicePdfSchema } from "./lib/generateInvoicePdfSchema.js";
-import { Invoice } from "./lib/types.js";
+import { Invoice, InvoiceItem } from "./lib/types.js";
 import { homedir } from "os";
 import { join } from "path";
 import { generateInvoicePDF } from "./components/invoice-template.js";
@@ -45,10 +45,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       outputPath: string;
     };
 
+    const itemsWithTotals = invoiceData.items.map((item: InvoiceItem) => ({
+      ...item,
+      total: item.quantity * item.unitPrice,
+    }));
+
+    const subtotal = itemsWithTotals.reduce(
+      (sum: number, item: InvoiceItem) => sum + item.total,
+      0
+    );
+    const vatAmount = subtotal * invoiceData.vatRate;
+    const total = subtotal + vatAmount;
+
     const invoice = {
       ...invoiceData,
       date: new Date(invoiceData.date),
       dueDate: new Date(invoiceData.dueDate),
+      items: itemsWithTotals,
+      subtotal,
+      vatAmount,
+      total,
     };
 
     const defaultPath = join(
