@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export const CurrencySchema = z.enum(["GBP", "USD", "CAD", "EUR"]);
+
 export const InvoiceItemSchema = z.object({
   description: z.string(),
   quantity: z.number().nonnegative().default(1),
@@ -41,6 +43,7 @@ export const InvoiceSchema = z.object({
   vatRate: z.number().nonnegative().optional().default(0),
   vatAmount: z.number().nonnegative().optional().default(0),
   total: z.number().nonnegative().default(0),
+  currency: CurrencySchema.default("GBP"),
   notes: z.string().optional(),
   terms: z.string().optional(),
 });
@@ -49,3 +52,4 @@ export type InvoiceItem = z.infer<typeof InvoiceItemSchema>;
 export type Business = z.infer<typeof BusinessSchema>;
 export type Customer = z.infer<typeof CustomerSchema>;
 export type Invoice = z.infer<typeof InvoiceSchema>;
+export type Currency = z.infer<typeof CurrencySchema>;
