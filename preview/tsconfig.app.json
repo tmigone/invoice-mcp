@@ -10,10 +10,15 @@
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["../server/src/shared/*"]
+    },
 
     /* Linting */
     "strict": true,
@@ -23,5 +28,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "../server/src/shared/**/*"]
 }

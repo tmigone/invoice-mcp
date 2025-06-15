@@ -1,4 +1,3 @@
-import { Invoice } from "../lib/types.js";
 import { styles } from "../styles/styles.js";
 import ReactPDF from "@react-pdf/renderer";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
@@ -6,6 +5,7 @@ import {
   getCurrencyCode,
   getCurrencySymbol,
 } from "../utils/currency-helpers.js";
+import { Invoice } from "../types/invoice.js";
 
 const InvoiceTemplate = ({ invoice }: { invoice: Invoice }) => {
   const currencySymbol = getCurrencySymbol(invoice.currency);
@@ -255,9 +255,11 @@ const InvoiceFooter = ({ invoice }: { invoice: Invoice }) => {
 };
 
 // Generate invoice PDF
-export const generateInvoicePDF = async (
+export const generateInvoicePdf = async (
   invoice: Invoice,
   filePath: string
 ): Promise<void> => {
   await ReactPDF.render(<InvoiceTemplate invoice={invoice} />, filePath);
 };
+
+export default InvoiceTemplate;

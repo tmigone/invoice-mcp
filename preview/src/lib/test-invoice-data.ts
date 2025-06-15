@@ -1,9 +1,10 @@
-import type { Invoice } from "./types";
+import { Invoice } from "@shared/types/invoice";
 
-export const invoice: Invoice = {
+export const testInvoiceData: Invoice = {
   invoiceNumber: "INV-2024-001",
   date: new Date("2024-01-15"),
   dueDate: new Date("2024-02-14"),
+  currency: "GBP",
   business: {
     name: "Highland Creative Studio",
     email: "hello@highlandcreative.co.uk",
@@ -41,7 +42,8 @@ export const invoice: Invoice = {
   ],
   subtotal: 3300.0,
   vatRate: 0.2,
-  total: 0,
+  vatAmount: 660.0,
+  total: 3960.0,
   notes: "Thank you for your business!",
   terms: "Payment terms: Net 30 days.",
 };

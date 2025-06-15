@@ -1,4 +1,4 @@
-export const generateInvoicePdfSchema = {
+export const invoicePdfToolSchema = {
   type: "object",
   properties: {
     invoice: {

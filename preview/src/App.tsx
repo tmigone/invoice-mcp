@@ -1,10 +1,10 @@
 import { PDFViewer } from "@react-pdf/renderer";
-import InvoiceTemplate from "./components/invoice-template";
+import PreviewInvoice from "./components/preview-invoice";
 
 function App() {
   return (
     <PDFViewer style={{ height: "100vh", width: "100%" }}>
-      <InvoiceTemplate />
+      <PreviewInvoice />
     </PDFViewer>
   );
 }

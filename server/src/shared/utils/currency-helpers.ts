@@ -1,4 +1,4 @@
-import { Currency } from "../lib/types.js";
+import { Currency } from "../types/invoice.js";
 
 export const getCurrencySymbol = (currency: Currency): string => {
   switch (currency) {

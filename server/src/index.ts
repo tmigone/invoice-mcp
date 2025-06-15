@@ -5,11 +5,12 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import { generateInvoicePdfSchema } from "./lib/generateInvoicePdfSchema.js";
-import { Invoice, InvoiceItem, InvoiceSchema } from "./lib/types.js";
+import { invoicePdfToolSchema } from "./lib/invoice-pdf-tool-schema.js";
+import { Invoice, InvoiceItem, InvoiceSchema } from "./shared/types/invoice.js";
 import { homedir } from "os";
 import { join } from "path";
-import { generateInvoicePDF } from "./components/invoice-template.js";
+import { generateInvoicePdf } from "./shared/components/invoice-template.js";
+
 
 // Create server instance
 const server = new Server(
@@ -31,7 +32,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: "generate-invoice-pdf",
         description: "Creates and exports an invoice as a PDF",
-        inputSchema: generateInvoicePdfSchema,
+        inputSchema: invoicePdfToolSchema,
       },
     ],
   };
@@ -92,7 +93,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       const finalOutputPath = outputPath || defaultPath;
 
-      await generateInvoicePDF(validatedInvoice, finalOutputPath);
+      await generateInvoicePdf(validatedInvoice, finalOutputPath);
 
       return {
         content: [
