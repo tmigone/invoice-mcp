@@ -113,6 +113,13 @@ export const generateInvoicePdfSchema = {
           type: "number",
           description: "Total amount including VAT",
         },
+        currency: {
+          type: "string",
+          description:
+            "Currency code. Use GBP for British Pounds/UK, USD for US Dollars/American, CAD for Canadian Dollars, EUR for Euros/European",
+          enum: ["GBP", "USD", "CAD", "EUR"],
+          default: "GBP",
+        },
         notes: { type: "string", description: "Additional notes" },
         terms: { type: "string", description: "Payment terms" },
       },

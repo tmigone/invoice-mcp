@@ -35,6 +35,7 @@
       "unitPrice": 800.23
     }
   ],
+  "currency": "GBP",
   "vatRate": 0.2,
   "notes": "Thank you for your business!",
   "terms": "Payment terms: Net 30 days."

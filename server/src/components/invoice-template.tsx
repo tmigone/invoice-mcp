@@ -2,15 +2,26 @@ import { Invoice } from "../lib/types.js";
 import { styles } from "../styles/styles.js";
 import ReactPDF from "@react-pdf/renderer";
 import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
+import {
+  getCurrencyCode,
+  getCurrencySymbol,
+} from "../utils/currency-helpers.js";
 
 const InvoiceTemplate = ({ invoice }: { invoice: Invoice }) => {
+  const currencySymbol = getCurrencySymbol(invoice.currency);
+  const currencyCode = getCurrencyCode(invoice.currency);
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <InvoiceHeader invoice={invoice} />
         <InvoiceMainContent invoice={invoice} />
-        <ItemsTable invoice={invoice} />
-        <InvoiceTotals invoice={invoice} />
+        <ItemsTable invoice={invoice} currencySymbol={currencySymbol} />
+        <InvoiceTotals
+          invoice={invoice}
+          currencySymbol={currencySymbol}
+          currencyCode={currencyCode}
+        />
         <InvoiceFooter invoice={invoice} />
       </Page>
     </Document>
@@ -100,7 +111,13 @@ const InvoiceMainContent = ({ invoice }: { invoice: Invoice }) => {
   );
 };
 
-const ItemsTable = ({ invoice }: { invoice: Invoice }) => {
+const ItemsTable = ({
+  invoice,
+  currencySymbol,
+}: {
+  invoice: Invoice;
+  currencySymbol: string;
+}) => {
   return (
     <View style={styles.table}>
       {/* table header */}
@@ -120,15 +137,29 @@ const ItemsTable = ({ invoice }: { invoice: Invoice }) => {
             <Text style={styles.serviceName}>{item.description}</Text>
           </View>
           <Text style={styles.qtyColumn}>{item.quantity}</Text>
-          <Text style={styles.rateColumn}>£{item.unitPrice.toFixed(2)}</Text>
-          <Text style={styles.totalColumn}>£{item.total.toFixed(2)}</Text>
+          <Text style={styles.rateColumn}>
+            {currencySymbol} {item.unitPrice.toFixed(2)}
+          </Text>
+          <Text style={styles.totalColumn}>
+            {currencySymbol} {item.total.toFixed(2)}
+          </Text>
         </View>
       ))}
     </View>
   );
 };
 
-const InvoiceTotals = ({ invoice }: { invoice: Invoice }) => {
+type InvoiceTotalsProps = {
+  invoice: Invoice;
+  currencySymbol: string;
+  currencyCode: string;
+};
+
+const InvoiceTotals = ({
+  invoice,
+  currencySymbol,
+  currencyCode,
+}: InvoiceTotalsProps) => {
   const vatPercentage = invoice.vatRate ? invoice.vatRate * 100 : 0;
 
   return (
@@ -137,7 +168,9 @@ const InvoiceTotals = ({ invoice }: { invoice: Invoice }) => {
         {/* subtotal */}
         <View style={styles.totalRowWithBorder}>
           <Text style={styles.totalLabel}>Subtotal</Text>
-          <Text style={styles.values}>£{invoice.subtotal.toFixed(2)}</Text>
+          <Text style={styles.values}>
+            {currencySymbol} {invoice.subtotal.toFixed(2)}
+          </Text>
         </View>
 
         {/* tax */}
@@ -146,21 +179,25 @@ const InvoiceTotals = ({ invoice }: { invoice: Invoice }) => {
             <Text style={styles.totalLabel}>
               Tax ({vatPercentage.toFixed(0)}%)
             </Text>
-            <Text style={styles.values}>£{invoice.vatAmount.toFixed(2)}</Text>
+            <Text style={styles.values}>
+              {currencySymbol} {invoice.vatAmount.toFixed(2)}
+            </Text>
           </View>
         )}
 
         {/* total */}
         <View style={styles.totalRow}>
           <Text style={styles.totalLabel}>Total</Text>
-          <Text>£{invoice.total.toFixed(2)}</Text>
+          <Text>
+            {currencySymbol} {invoice.total.toFixed(2)}
+          </Text>
         </View>
 
         {/* final amount due */}
         <View style={[styles.totalRow, styles.finalTotalRow]}>
           <Text style={styles.finalTotalLabel}>Amount due</Text>
           <Text style={styles.finalTotalValue}>
-            GBP {invoice.total.toFixed(2)}
+            {currencyCode} {invoice.total.toFixed(2)}
           </Text>
         </View>
       </View>
