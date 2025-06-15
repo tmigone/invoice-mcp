@@ -1,1 +1,1 @@
-## Incoming..
+![invoice-mcp](.github/readme-assets/invoice-mcp-github-readme-banner.png)
