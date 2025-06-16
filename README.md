@@ -74,6 +74,10 @@ mike@business.com
 
 By using the instructions below, you'll be prompted to confirm or add any missing details. You can then confirm and create the invoice without all customer details if needed.
 
+## Demo
+![invoice-mcp-demo](.github/readme-assets/invoice-mcp-demo.gif)
+
+
 ### Logo Requirements
 A logo is optional - if provided, it must be a **direct URL** to a JPG, PNG, or WebP image file. The URL must end with the file extension (e.g., .jpg, .png) and link directly to the image, not a webpage. **SVG files are not supported.**
 
