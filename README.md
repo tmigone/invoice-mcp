@@ -106,6 +106,7 @@ For consistent invoice generation, I recommend filling in and adding these instr
 ### Default Terms:
 - Payment due within 30 days of invoice date 
 - **VAT Rate:** 0% (no VAT unless explicitly requested)
+- **Currency:** GBP (supported currencies: GBP, USD, CAD, EUR)
 
 ### Default Notes:
 "Thank you for your business."
