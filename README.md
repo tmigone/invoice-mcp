@@ -185,7 +185,4 @@ The invoice template can be edited through ``invoice-template.tsx`` and ``styles
 When using online AI services like Claude, only include information you're comfortable sharing as data may be processed for model training. For enhanced privacy, this MCP server can be configured to work with local solutions such as Open WebUI.
 
 ## Acknowledgements
-
-- [Model Context Protocol](https://github.com/modelcontextprotocol/typescript-sdk) - MCP TypeScript SDK
-- [React-pdf](https://github.com/diegomura/react-pdf) - PDF generation
 - [Figma Community Invoice Templates](https://www.figma.com/design/MN4zNKiM50IpphAOlRulJG/Invoice-Templates--Community-?node-id=0-1&p=f) - Invoice design inspiration
