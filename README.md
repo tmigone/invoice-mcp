@@ -79,7 +79,7 @@ A logo is optional - if provided, it must be a **direct URL** to a JPG, PNG, or 
 
 I recommend using an image with no padding around the logo for best results.
 
-✅ Good: https://example.com/logo.png 
+✅ Good: https://example.com/logo.png <br>
 ❌ Bad: https://example.com/logo-page or https://example.com/logo.svg
 
 ### Prompt Instructions
