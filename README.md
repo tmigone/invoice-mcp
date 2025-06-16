@@ -141,6 +141,31 @@ When asked for mock/test invoices, create realistic customer details and service
 Defaults to desktop.
 ```
 
+# Development
+### Preview App
+Preview the invoice template at http://localhost:5173/ -
+
+```bash
+cd preview
+npm run dev
+```
+
+The invoice template can be edited through ``invoice-template.tsx`` and ``styles.ts`` in the server folder. Changes will automatically carry over to the preview.
+
+### Server
+Build the MCP server -
+
+```bash
+cd server
+npm run build
+```
+
+Test the MCP server using the inspector -
+
+```bash
+npm run inspector
+```
+
 ## Tech Stack
 ### Server
 - Model Context Protocol SDK
