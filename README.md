@@ -142,16 +142,6 @@ Defaults to desktop.
 ```
 
 ## Development
-### Preview App
-Preview the invoice template at http://localhost:5173/ -
-
-```bash
-cd preview
-npm run dev
-```
-
-The invoice template can be edited through ``invoice-template.tsx`` and ``styles.ts`` in the server folder - changes will automatically carry over to the preview.
-
 ### Server
 Build the MCP server -
 
@@ -165,6 +155,16 @@ Test the MCP server using the inspector -
 ```bash
 npm run inspector
 ```
+
+### Preview App
+Preview the invoice template at http://localhost:5173/ -
+
+```bash
+cd preview
+npm run dev
+```
+
+The invoice template can be edited through ``invoice-template.tsx`` and ``styles.ts`` in the server folder - changes will automatically carry over to the preview.
 
 ## Tech Stack
 ### Server
