@@ -245,7 +245,7 @@ The invoice template can be edited through `invoice-template.tsx` and `styles.ts
 
 ## Privacy
 
-When using online AI services such as Claude desktop, only include information you're comfortable sharing as data may be processed for model training. For enhanced privacy, this MCP server can be configured to work with local solutions such as Open WebUI.
+When using online AI services such as Claude Desktop, only include information you're comfortable sharing as data may be processed for model training. For enhanced privacy, this MCP server can be configured to work with local solutions such as Open WebUI.
 
 ## In Progress
 
