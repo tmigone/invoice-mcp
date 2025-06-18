@@ -83,7 +83,7 @@ By using the instructions below, you'll be prompted to confirm or add any missin
 
 ### Logo Requirements
 
-A logo is optional - if provided, it must be a **direct URL** to a JPG, PNG, or WebP image file. The URL must end with the file extension (e.g., .jpg, .png) and link directly to the image, not a webpage. **SVG files are not supported.**
+A logo is optional - if provided, it must be a **direct URL** to a JPG, PNG or WebP image file. The URL should end with the file extension (`.jpg`, `.png`) and link directly to the image, not a webpage. **SVG files are not supported.**
 
 I recommend using an image with no padding around the logo for best results.
 
@@ -242,7 +242,7 @@ The invoice template can be edited through `invoice-template.tsx` and `styles.ts
 - TypeScript
 - React PDF
 - Vite
-- 
+
 ## Privacy
 
 When using online AI services such as Claude desktop, only include information you're comfortable sharing as data may be processed for model training. For enhanced privacy, this MCP server can be configured to work with local solutions such as Open WebUI.
