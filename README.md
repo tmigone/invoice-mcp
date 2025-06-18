@@ -6,7 +6,7 @@ A Model Context Protocol server for creating professional PDF invoices using nat
 
 ## ⚠️ Privacy Notice
 
-This is an experimental project exploring MCP servers. When using with Claude Desktop or other MCP compatible services, your data is sent to the AI provider and may be used for model training. Only include information you're comfortable sharing. For enhanced privacy, this MCP server can be configured to work with local AI solutions such as Open WebUI.
+This is an experimental project exploring MCP servers. When using with Claude Desktop or other MCP compatible services, your data is sent to the AI provider and may be used for model training. Only include information you're comfortable sharing. For full privacy - this MCP server can be configured to work with local AI solutions such as Open WebUI.
 
 ## Getting Started
 
