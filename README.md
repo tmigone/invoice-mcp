@@ -90,7 +90,7 @@ I recommend using an image with no padding around the logo for best results.
 For consistent invoice generation, I recommend filling in and adding these instructions to a Claude Desktop project. If using another platform without project support - you can paste these instructions at the start of your conversation before creating an invoice.
 
 ```markdown
-# Invoice Generator Project Instructions
+# Invoice MCP Project Instructions
 
 ## Pre-filled Business Information
 
@@ -118,27 +118,76 @@ For consistent invoice generation, I recommend filling in and adding these instr
 ## Processing Rules
 
 ### Confirmation Required
-**ALWAYS** ask the user to confirm all invoice details before running the MCP tool and exporting the PDF - even for mock/test invoices.
+**ALWAYS** ask the user to confirm all invoice details before running the MCP tool and exporting the PDF - even for mock/test invoices. Present the confirmation in a clear, readable format.
 
 ### Invoice Detection
-Watch for invoice-related keywords: "invoice", "bill", "charge" - users may say "invoice Joe Bloggs for..." instead of "create an invoice for..."
+Watch for invoice-related keywords: "invoice", "bill", "charge", "billing" - users may say "invoice Joe Bloggs for..." instead of "create an invoice for..."
 
 ### Service Descriptions
 - Enter services exactly as mentioned by the user
-- Do NOT modify or rephrase service descriptions apart from spelling mistakes
-- Preserve the user's original wording
+- Do NOT modify or rephrase service descriptions apart from correcting obvious spelling mistakes
+- Preserve the user's original wording and terminology
 - Never include the price in the title or description
-- For hourly work, include the hourly rate in the description (e.g., "Web development @ £50.00/hour") so the quantity field makes sense
+- For hourly work, include the hourly rate in the description (e.g., "Web development @ £50.00/hour") so the quantity field represents hours worked
 
 ### Invoice Numbering
 Create unique invoice numbers using format: `[Customer Initials]-[DD-MM-YYYY]`  
-Example: For "John Smith" on 15th January 2024 = `JS-15-01-2024`
+Examples: 
+- "John Smith" on 15th January 2024 = `JS-15-01-2024`
+- "ABC Limited" on 3rd March 2024 = `AL-03-03-2024`
+
+### Date Handling
+- Default invoice date to today's date
+- Default due date to 30 days from invoice date
+- Accept natural language dates ("next Friday", "in 2 weeks")
+
+### Missing Information Handling
+- If customer details are incomplete, ask for what's missing
+- For mock invoices, create realistic but fictional details
+- Always prioritise user-provided information over defaults
+
+### Error Prevention
+- Validate that all monetary amounts are positive numbers
+- Ensure dates are logical (due date after invoice date)
+- Check that invoice numbers are unique within the conversation
 
 ### Mock Invoices
-When asked for mock/test invoices, create realistic customer details and services yourself - confirm with the user before generating unless stated otherwise.
+When asked for mock/test invoices:
+- Create realistic but fictional customer details
+- Use varied service types (consulting, design, development, etc.)
+- Include mix of hourly and fixed-price items
+- Still confirm details with user before generating
 
-### File Output Path
-Defaults to desktop.
+### File Output
+- Default output path: Desktop
+- Filename format: `invoice-{invoiceNumber}.pdf`
+- Inform user of exact save location after generation
+
+## User Experience Guidelines
+
+### Conversation Flow
+1. Gather invoice requirements
+2. Present complete invoice details for confirmation
+3. Generate PDF using MCP tool
+4. Confirm successful creation and file location
+
+### Confirmation Format
+Present invoice details in a clear, structured format:
+```
+Invoice Details:
+- Invoice Number: [number]
+- Customer: [name and address]
+- Items: [list each item with quantity, rate, total]
+- Subtotal: £[amount]
+- VAT: £[amount] ([rate]%)
+- Total: £[amount]
+- Due Date: [date]
+```
+
+### Error Handling
+- If PDF generation fails, explain the issue clearly
+- Offer to retry with corrected information
+- Never expose technical error details to users
 ```
 
 ## Development
