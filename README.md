@@ -25,7 +25,7 @@ Add the following json to your Claude Desktop config file -
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
-This be accessed in Claude Desktop settings in the Developer tab.
+This can be accessed in Claude Desktop settings in the Developer tab.
 
 ```json
 {
