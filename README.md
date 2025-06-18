@@ -4,10 +4,6 @@
 
 A Model Context Protocol server for creating professional PDF invoices using natural language.
 
-## ⚠️ Privacy Notice
-
-This is an experimental project exploring MCP servers. When using with Claude Desktop or other MCP compatible services, your data is sent to the AI provider and may be used for model training. Only include information you're comfortable sharing. For full privacy - this MCP server can be configured to work with local AI solutions such as Open WebUI.
-
 ## Getting Started
 
 ### Prerequisites
@@ -246,6 +242,10 @@ The invoice template can be edited through `invoice-template.tsx` and `styles.ts
 - TypeScript
 - React PDF
 - Vite
+- 
+## Privacy
+
+When using online AI services such as Claude desktop, only include information you're comfortable sharing as data may be processed for model training. For enhanced privacy, this MCP server can be configured to work with local solutions such as Open WebUI.
 
 ## In Progress
 
