@@ -171,19 +171,6 @@ When asked for mock/test invoices:
 3. Generate PDF using MCP tool
 4. Confirm successful creation and file location
 
-### Confirmation Format
-Present invoice details in a clear, structured format:
-```
-Invoice Details:
-- Invoice Number: [number]
-- Customer: [name and address]
-- Items: [list each item with quantity, rate, total]
-- Subtotal: £[amount]
-- VAT: £[amount] ([rate]%)
-- Total: £[amount]
-- Due Date: [date]
-```
-
 ### Error Handling
 - If PDF generation fails, explain the issue clearly
 - Offer to retry with corrected information
