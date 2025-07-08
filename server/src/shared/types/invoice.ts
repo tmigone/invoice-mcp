@@ -11,7 +11,7 @@ export const InvoiceItemSchema = z.object({
 
 export const BusinessSchema = z.object({
   name: z.string(),
-  email: z.string().email().optional(),
+  email: z.string().optional().nullable(),
   phone: z.string().optional(),
   address: z.string().optional(),
   city: z.string().optional(),
@@ -20,12 +20,12 @@ export const BusinessSchema = z.object({
   accountName: z.string().optional(),
   accountNumber: z.string().optional(),
   sortCode: z.string().optional(),
-  logo: z.string().url().optional(),
+  logo: z.string().optional().nullable(),
 });
 
 export const CustomerSchema = z.object({
   name: z.string(),
-  email: z.string().email().optional(),
+  email: z.string().optional().nullable(),
   address: z.string().optional(),
   city: z.string().optional(),
   country: z.string().optional(),
